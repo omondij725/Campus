@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus Connect</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="style.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+    
+
+<!-- Header -->
+<header>
+    <img src="college.png" alt="College Logo">
+    <h1>Telux Campus</h1>
+</header>
+
+<!-- Navigation -->
+<nav>
+    <a href="home">Home</a>
+    <a href="events">Events</a>
+    <a href="register">Register</a>
+</nav>
+
+<!-- Banner -->
+<div class="banner">
+    Discover & Register for Campus Events Easily!
+</div>
+
+<section class="events">
+    <h2>Upcoming Events</h2>
+
+    <div class="event-container">
+
+        <!-- Cultural Week -->
+        <div class="card">
+            <img src="jubileecrossrdg.jpg">
+            <h3>Cultural Week</h3>
+            <p><strong>Date:</strong> March 10, 2026</p>
+            <p>Celebrate diversity with music, dance & food.</p>
+
+            <div class="more-content">
+                <p>Enjoy traditional performances, fashion shows, and cultural exhibitions from different communities.</p>
+            </div>
+
+            <button class="toggle-btn">Show More</button>
+        </div>
+
+        <!-- Sports Day -->
+        <div class="card">
+            <img src="sports.jpg">
+            <h3>Sports Day</h3>
+            <p><strong>Date:</strong> April 5, 2026</p>
+            <p>Join exciting competitions and team activities.</p>
+
+            <div class="more-content">
+                <p>Football, basketball, athletics, and fun races. Medals & trophies to be won!</p>
+            </div>
+
+            <button class="toggle-btn">Show More</button>
+        </div>
+
+        <!-- Student Election -->
+        <div class="card">
+            <img src="election.jpg">
+            <h3>Student's Election</h3>
+            <p><strong>Date:</strong> May 15, 2026</p>
+            <p>Vote for your student leaders.</p>
+
+            <div class="more-content">
+                <p>Campaign debates, manifestos presentation and secure digital voting process.</p>
+            </div>
+
+            <button class="toggle-btn">Show More</button>
+        </div>
+
+        <!-- Tree Planting -->
+        <div class="card">
+            <img src="tree.jpg">
+            <h3>Tree Planting Day</h3>
+            <p><strong>Date:</strong> June 8, 2026</p>
+            <p>Support environmental conservation.</p>
+
+            <div class="more-content">
+                <p>Join hands in planting trees around campus and promote sustainability awareness.</p>
+            </div>
+
+            <button class="toggle-btn">Show More</button>
+        </div>
+
+    </div>
+</section>
+<section class="register">
+    <h2>Event Registration</h2>
+
+    <form id="registrationForm">
+        <label>Student Admission Number</label>
+        <input type="text" id="admission" placeholder="Enter admission number">
+
+        <label>Name</label>
+        <input type="text" id="name" placeholder="Enter full name">
+
+        <label>Event Selection</label>
+        <select id="event">
+            <option value="">-- Select Event --</option>
+            <option>Cultural Week</option>
+            <option>Sports Day</option>
+            <option>Student's Election</option>
+            <option>Tree Planting Day</option>
+        </select>
+
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="Enter email">
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p id="successMessage">🎉 Registration Successful!</p>
+</section>
+<!-- Slideshow -->
+<div class="slideshow-container">
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644" alt="Event 1">
+    </div>
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7" alt="Event 2">
+    </div>
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1515169067868-5387ec356754" alt="Event 3">
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 Campus Connect | All Rights Reserved</p>
+    
+    <div class="social-icons">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin"></i>
+    </div>
+</footer>
+
+<script>
+let slideIndex = 0;
+showSlides();
+
+function showSlides(){
+    let slides = document.getElementsByClassName("slide");
+    
+    for(let i=0; i<slides.length; i++){
+        slides[i].style.display = "none";
+    }
+    
+    slideIndex++;
+    
+    if(slideIndex > slides.length){
+        slideIndex = 1;
+    }
+    
+    slides[slideIndex-1].style.display = "block";
+    
+    setTimeout(showSlides, 3000);
+}
+$(document).ready(function(){
+    $(".toggle-btn").click(function(){
+        $(this).siblings(".more-content").slideToggle();
+        
+        if($(this).text() == "Show More"){
+            $(this).text("Show Less");
+        } else {
+            $(this).text("Show More");
+        }
+    });
+});
+
+$(document).ready(function(){
+
+    $("#registrationForm").submit(function(e){
+        e.preventDefault();
+
+        let admission = $("#admission").val().trim();
+        let name = $("#name").val().trim();
+        let email = $("#email").val().trim();
+
+        let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+        if(admission === ""){
+            alert("Please enter Student Admission Number");
+            return;
+        }
+
+        if(name === ""){
+            alert("Please enter your Name");
+            return;
+        }
+
+        if(email === ""){
+            alert("Please enter your Email Address");
+            return;
+        }
+
+        if(!email.match(emailPattern)){
+            alert("Please enter a valid Email Address");
+            return;
+        }
+
+        $("#successMessage").fadeIn();
+        $("#registrationForm")[0].reset();
+    });
+
+});
+</script>
+
+</body>
+</html>
